@@ -1,29 +1,42 @@
 # 关于我 / About Me
 
-你好！我是 **夏叶** ，一个在数字世界中默默无闻的一片叶子。
+## 📋博主身份证
 
-## 🛠️ 关于本站
+- 性别 : 男 ~~女~~
+- 年龄: 不到 30 
+- 生日 : 只有自己知道
+- 星座 : 天秤
+- 兴趣 : 上面有
+- 血型 : O
+- 状态 : 还没死
 
-这个网站使用 **Astro** 框架构建，采用了 [Firefly](https://github.com/CuteLeaf/Firefly) 模板，Firefly 是基于 [Fuwari](https://github.com/saicaca/fuwari) 的二次开发。
+随心所欲不逾矩，同流世俗不和污
 
-**Firefly** 是一款基于 Astro 框架和 Fuwari 模板开发的清新美观且现代化个人博客主题模板，专为技术爱好者和内容创作者设计。该主题融合了现代 Web 技术栈，提供了丰富的功能模块和高度可定制的界面，让您能够轻松打造出专业且美观的个人博客网站。
+## 🥤娱乐
+
+不烟不赌，也不黄，可小酌🍷
+
+发发呆，打打球，没事到处瞎溜溜🏕️
+
+烟火气里养闲心，脑洞大开造宇宙🪐
+
+三分懒散七分野，日子晃成散文诗📖
+
+踏遍山海寻自由，旧物焕新妙手收🔧
+
+游戏主打原神，3A 均有涉猎
 
 
-**🖥️在线预览： [Firefly - Demo site](https://firefly.cuteleaf.cn/)**
+## ❔为什么建站
 
-**🏠我的博客： [https://blog.cuteleaf.cn](https://blog.cuteleaf.cn/)**
+> 创建这个站的时候，就是想自己有一个能够积累知识、积累兴趣的地方。坚持下来，会让这些成为 **沉淀**。未来回头看，多一份回忆。结合自己昔日的点点滴滴，它带给我的，是一种独特的静。在独属于自己的一方网络净土，细细阅读每一篇文章似是看了一场电影，又或是做了一场梦
+>
+> 这里大多都是 **生活向** 的文章，权当自我记录，仅代表个人时下意见和想法
 
-**📝Firefly使用文档： [https://docs-firefly.cuteleaf.cn](https://docs-firefly.cuteleaf.cn/)**
 
-**⭐Firefly开源地址：[https://github.com/CuteLeaf/Firefly](https://github.com/CuteLeaf/Firefly)** 
 
-**⭐Fuwari开源地址：[https://github.com/saicaca/fuwari](https://github.com/saicaca/fuwari)**
-
-::github{repo="CuteLeaf/Firefly"}
-
-::github{repo="saicaca/fuwari"}
 
 ---
 
-*感谢你的来访！希望在这里能找到对你有用的内容！*
+*有幸能和你相遇在这里，相信我们能共同留下一段美好记忆*
 
