@@ -12,10 +12,10 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 	// 基础导航栏链接
 	const links: (NavBarLink | LinkPreset)[] = [
 		// 主页
-		LinkPreset.Home,
+		// LinkPreset.Home,
 
 		// 归档
-		LinkPreset.Archive,
+		// LinkPreset.Archive,
 	];
 
 	// 根据配置决定是否添加友链，在siteConfig关闭pages.friends时导航栏不显示友链
@@ -66,19 +66,13 @@ const getDynamicNavBarConfig = (): NavBarConfig => {
 		children: [
 			{
 				name: "GitHub",
-				url: "https://github.com/CuteLeaf/Firefly",
+				url: "https://github.com/youngdajie",
 				external: true,
 				icon: "fa7-brands:github",
 			},
 			{
-				name: "Gitee",
-				url: "https://gitee.com/CuteLeaf/Firefly",
-				external: true,
-				icon: "fa7-brands:gitee",
-			},
-			{
-				name: "QQ交流群",
-				url: "https://qm.qq.com/q/ZGsFa8qX2G",
+				name: "QQ",
+				url: "tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=434871910&website=www.qq.com",
 				external: true,
 				icon: "fa7-brands:qq",
 			},
