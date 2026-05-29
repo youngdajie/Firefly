@@ -5,11 +5,11 @@ import { i18n } from "@i18n/translation";
  * 移除文件扩展名（.md, .mdx, .markdown）
  * 用于将 Astro v5 Content Layer API 的 id 转换为 URL 友好的 slug
  */
-export function removeFileExtension(id : string) : string {
+export function removeFileExtension(id: string): string {
 	return id.replace(/\.(md|mdx|markdown)$/i, "");
 }
 
-export function pathsEqual(path1 : string, path2 : string) {
+export function pathsEqual(path1: string, path2: string) {
 	const normalizedPath1 = path1.replace(/^\/|\/$/g, "").toLowerCase();
 	const normalizedPath2 = path2.replace(/^\/|\/$/g, "").toLowerCase();
 	return normalizedPath1 === normalizedPath2;
@@ -18,7 +18,7 @@ export function pathsEqual(path1 : string, path2 : string) {
 /**
  * 智能拼接URL，正确处理网络URL和本地路径
  */
-function joinUrl(...parts : string[]) : string {
+function joinUrl(...parts: string[]): string {
 	// 如果第一个部分是网络URL，直接返回拼接后的结果（不处理协议头的//）
 	if (
 		parts[0]?.startsWith("http://") ||
@@ -33,18 +33,18 @@ function joinUrl(...parts : string[]) : string {
 	return joined.replace(/\/+/g, "/");
 }
 
-export function getPostUrlBySlug(slug : string) : string {
+export function getPostUrlBySlug(slug: string): string {
 	// 移除文件扩展名（如 .md, .mdx 等）
 	const slugWithoutExt = removeFileExtension(slug);
 	return url(`/posts/${slugWithoutExt}/`);
 }
 
-export function getTagUrl(tag : string) : string {
+export function getTagUrl(tag: string): string {
 	if (!tag) return url("/archive/");
 	return url(`/archive/?tag=${encodeURIComponent(tag.trim())}`);
 }
 
-export function getCategoryUrl(category : string | null) : string {
+export function getCategoryUrl(category: string | null): string {
 	if (
 		!category ||
 		category.trim() === "" ||
@@ -54,7 +54,7 @@ export function getCategoryUrl(category : string | null) : string {
 	return url(`/archive/?category=${encodeURIComponent(category.trim())}`);
 }
 
-export function getDir(path : string) : string {
+export function getDir(path: string): string {
 	// 移除文件扩展名
 	const pathWithoutExt = removeFileExtension(path);
 	const lastSlashIndex = pathWithoutExt.lastIndexOf("/");
@@ -64,11 +64,11 @@ export function getDir(path : string) : string {
 	return pathWithoutExt.substring(0, lastSlashIndex + 1);
 }
 
-export function getFileDirFromPath(filePath : string) : string {
+export function getFileDirFromPath(filePath: string): string {
 	return filePath.replace(/^src\//, "").replace(/\/[^/]+$/, "");
 }
 
-export function getSearchUrl(query : string) : string {
+export function getSearchUrl(query: string): string {
 	return url(`/search/?q=${encodeURIComponent(query.trim())}`);
 }
 
