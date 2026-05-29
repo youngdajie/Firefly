@@ -6,6 +6,7 @@ import { pluginCollapsibleSections } from "@expressive-code/plugin-collapsible-s
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import swup from "@swup/astro";
 import { defineConfig } from "astro/config";
+import { unified } from "@astrojs/markdown-remark";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -45,7 +46,7 @@ if (process.env.NODE_ENV === "development") {
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.site_url,
-	
+
 	base: "/",
 	trailingSlash: "always",
 
@@ -116,20 +117,20 @@ export default defineConfig({
 				// pluginCollapsible 配置 - 从expressiveCodeConfig读取设置，使用i18n文本
 				...(expressiveCodeConfig.pluginCollapsible?.enable === true
 					? [
-							pluginCollapsible({
-								lineThreshold:
-									expressiveCodeConfig.pluginCollapsible.lineThreshold || 15,
-								previewLines:
-									expressiveCodeConfig.pluginCollapsible.previewLines || 8,
-								defaultCollapsed:
-									expressiveCodeConfig.pluginCollapsible.defaultCollapsed ??
-									true,
-								expandButtonText: i18n(I18nKey.codeCollapsibleShowMore),
-								collapseButtonText: i18n(I18nKey.codeCollapsibleShowLess),
-								expandedAnnouncement: i18n(I18nKey.codeCollapsibleExpanded),
-								collapsedAnnouncement: i18n(I18nKey.codeCollapsibleCollapsed),
-							}),
-						]
+						pluginCollapsible({
+							lineThreshold:
+								expressiveCodeConfig.pluginCollapsible.lineThreshold || 15,
+							previewLines:
+								expressiveCodeConfig.pluginCollapsible.previewLines || 8,
+							defaultCollapsed:
+								expressiveCodeConfig.pluginCollapsible.defaultCollapsed ??
+								true,
+							expandButtonText: i18n(I18nKey.codeCollapsibleShowMore),
+							collapseButtonText: i18n(I18nKey.codeCollapsibleShowLess),
+							expandedAnnouncement: i18n(I18nKey.codeCollapsibleExpanded),
+							collapsedAnnouncement: i18n(I18nKey.codeCollapsibleCollapsed),
+						}),
+					]
 					: []),
 			],
 			defaultProps: {
@@ -194,59 +195,61 @@ export default defineConfig({
 		mdx(),
 	],
 	markdown: {
-		remarkPlugins: [
-			remarkMath,
-			remarkReadingTime,
-			remarkImageGrid,
-			remarkExcerpt,
-			remarkDirective,
-			remarkSectionize,
-			parseDirectiveNode,
-			remarkMermaid,
-			[remarkPlantuml, plantumlConfig],
-		],
-		rehypePlugins: [
-			[rehypeKatex, { katex }],
-			[rehypeCallouts, { theme: siteConfig.rehypeCallouts.theme }],
-			rehypeSlug,
-			rehypeMermaid,
-			rehypePlantuml,
-			rehypeFigure,
-			[rehypeExternalLinks, { siteUrl: siteConfig.site_url }],
-			[rehypeEmailProtection, { method: "base64" }], // 邮箱保护插件，支持 'base64' 或 'rot13'
-			[
-				rehypeComponents,
-				{
-					components: {
-						github: GithubCardComponent,
-					},
-				},
+		processor: unified({
+			remarkPlugins: [
+				remarkMath,
+				remarkReadingTime,
+				remarkImageGrid,
+				remarkExcerpt,
+				remarkDirective,
+				remarkSectionize,
+				parseDirectiveNode,
+				remarkMermaid,
+				[remarkPlantuml, plantumlConfig],
 			],
-			[
-				rehypeAutolinkHeadings,
-				{
-					behavior: "append",
-					properties: {
-						className: ["anchor"],
-					},
-					content: {
-						type: "element",
-						tagName: "span",
-						properties: {
-							className: ["anchor-icon"],
-							"data-pagefind-ignore": true,
+			rehypePlugins: [
+				[rehypeKatex, { katex }],
+				[rehypeCallouts, { theme: siteConfig.rehypeCallouts.theme }],
+				rehypeSlug,
+				rehypeMermaid,
+				rehypePlantuml,
+				rehypeFigure,
+				[rehypeExternalLinks, { siteUrl: siteConfig.site_url }],
+				[rehypeEmailProtection, { method: "base64" }], // 邮箱保护插件，支持 'base64' 或 'rot13'
+				[
+					rehypeComponents,
+					{
+						components: {
+							github: GithubCardComponent,
 						},
-						children: [
-							{
-								type: "text",
-								value: "#",
-							},
-						],
 					},
-				},
+				],
+				[
+					rehypeAutolinkHeadings,
+					{
+						behavior: "append",
+						properties: {
+							className: ["anchor"],
+						},
+						content: {
+							type: "element",
+							tagName: "span",
+							properties: {
+								className: ["anchor-icon"],
+								"data-pagefind-ignore": true,
+							},
+							children: [
+								{
+									type: "text",
+									value: "#",
+								},
+							],
+						},
+					},
+				],
 			],
-		],
-	},
+		}),
+},
 	vite: {
 		plugins: [tailwindcss()],
 		server: {
